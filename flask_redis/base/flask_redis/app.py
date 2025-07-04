@@ -1,9 +1,13 @@
 import redis
 from flask import Flask, make_response
 import socket
+import os
+
+DB_HOST = os.getenv('REDIS_HOST', 'redis')
+MY_ENV = os.getenv('ENV', 'unknown')
 
 app = Flask(__name__)
-cache = redis.Redis(host='redis', port=6379)
+cache = redis.Redis(host=DB_HOST, port=6379)
 
 def get_hit_count() -> int:
     return int(cache.get('hits') or 0)
@@ -26,5 +30,5 @@ def metrics():
 def hello():
     incr_hit_count()
     count = get_hit_count()
-    return 'Hello World! I have been seen {} times. My name is: {}\n'.format(count, socket.gethostname())
+    return 'Hello World! I have been seen {} times. My name is: {} My env: {}\n'.format(count, socket.gethostname(), MY_ENV)
 

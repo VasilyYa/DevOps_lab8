@@ -1,0 +1,10 @@
+labels:
+- includeSelectors: true
+  pairs:
+    app: 'devops-course-2025'
+
+resources:
+- flask_service.yml
+- flask.yml
+- redis_service.yml
+- redis.yml
