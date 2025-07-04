@@ -1,0 +1,8 @@
+name: PromGraf
+description: A generated Helm Chart for PromGraf from Skippbox Kompose
+version: 0.0.2
+apiVersion: v2
+keywords:
+  - PromGraf
+sources:
+home:
